@@ -8,6 +8,8 @@ else
   env="FALSE"
 fi
 
+echo "ENV=$env" >> $GITHUB_OUTPUT
+
 declare -A branchkeymap=(["master"]="PLASMO_PROD_KEYS" ["integration"]="PLASMO_INT_KEYS" ["staging"]="PLASMO_STAGING_KEYS")
 branch=`git branch --show`
 if [[ -v "branchkeymap[$branch]" ]] ; then
@@ -16,4 +18,4 @@ else
   secretkey="FALSE"
 fi
 
-echo "ENV=$env,SECRETKEY=$secretkey"
+echo "SECRETKEY=$secretkey" >> $GITHUB_OUTPUT
